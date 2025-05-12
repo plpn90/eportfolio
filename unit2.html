@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Cybersecurity</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/cybersec.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -530px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <!-- <div id="topic-banner"></div> -->
+            <div>
+              <header class="major">
+                <h1>Implementing Hardened Systems with ISO/IEC 27000</h1>
+              </header>
+
+              <p>
+                Safeguarding information assets extends beyond technological
+                solutions; it necessitates the application of well-established
+                principles and standards. The ISO/IEC 27000 series provides a
+                comprehensive framework for the effective management of
+                information security. However, it is critical to acknowledge
+                that the weakest link of security is inherently the most
+                vulnerable component - the human factor. With this context, I
+                selected some key concepts which are helpful to mitigate the
+                risks associated with human error.
+              </p>
+
+              <p>
+                <b>Access control</b> is designed to ensure that only
+                individuals with proper authorisation can access specific
+                systems or data, thereby minimising the risk of both
+                unintentional and intentional breaches. For example, role-based
+                access control assigns permissions based on specific job
+                responsibilities, ensuring that users only have access to the
+                information necessary for their roles. Role-based access control
+                also offers another advantage: it reduces the likelihood of
+                errors during on- and off-boarding personal. This is because all
+                the granted permissions are readily accessible in a single
+                location, making it less likely that an ex-employee retains
+                access beyond their employment period (Sutton 2022).
+              </p>
+
+              <p>
+                <b>Authentication</b> complements access control by verifying
+                the identity of users attempting to gain access to systems.
+                Common methods include passwords, biometric verification, and
+                multi-factor authentication (MFA). Implementing strong
+                authentication protocols significantly reduces the risk of
+                unauthorised access and identity impersonation.
+              </p>
+
+              <p>
+                <b>Auditing</b> every action is essential for maintaining
+                traceability and accountability within an organisation. By
+                logging user activities and access events, organisations can
+                detect irregularities and perform investigations of security
+                incidents (Sutton 2022). Regular audits also contribute to the
+                continuous improvement of the Information Security Management
+                System (ISMS).
+              </p>
+
+              <p>
+                <b>Confidentiality</b> is a core principle of information
+                security, focusing on restricting data access to authorised
+                personnel only. Techniques such as data encryption, secure
+                communication protocols, and the enforcement of non-disclosure
+                agreements are commonly employed to uphold data confidentiality
+                (Mutch et al 2011).
+              </p>
+
+              <p>
+                Lastly, <b>security implementation standards</b> provide a set
+                of guidelines and controls necessary for translating security
+                policies into actionable measures. Standards based on ISO/IEC
+                27001, supported by ISO/IEC 27002, help organisations establish
+                measurable, repeatable processes that can be systematically
+                audited and refined for continuous enhancement.
+              </p>
+              <div>
+                <h4>References:</h4>
+                <ul class="alt">
+                  <li>Mutch, J. & Anderson, B. (2011) Preventing good people from doing bad things : implementing least privilege. 1st ed. 2011. Berkeley, Calif: Apress.</li>
+                  <li>Sutton, D. (2022) Cyber security : the complete guide to cyber threats and protection. 2nd ed. London, England: BCS Learning and Development Limited.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
