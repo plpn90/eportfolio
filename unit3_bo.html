@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Buffer Overflows</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/bit-pile.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -530px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <div>
+              <header class="major">
+                <h1>Unit 3 - Buffer-Overflows</h1>
+              </header>
+
+              <h2>Part I</h2>
+
+              <pre>
+              <code>#include &lt;stdio.h&gt;
+int main(int argc, char **argv)
+{
+  char buf[8]; // buffer for eight characters
+  printf("enter name:"); 
+  gets(buf); // read from stdio (sensitive function!)
+  printf("%s\n", buf); // print out data stored in buf
+  return 0; // 0 as return value
+}
+              </code>
+            </pre>
+
+              <blockquote>
+                Now compile and run the code. To test it, enter your first name
+                (or at least the first 8 characters of it) you should get the
+                output which is just your name repeated back to you. Run the
+                code a second time (from the command window this can be achieved
+                by entering ./bufoverflow on the command line). This time, enter
+                a string of 10 or more characters. What happens? What does the
+                output message mean?
+              </blockquote>
+
+              <p>
+                Executing the program and entering my name, which is below the 8
+                character limits, allows the program to work as expected,
+                however, it is warning about using the unsafe function 'gets()':
+              </p>
+              <pre>
+              <code>$ ./a.out
+warning: this program uses gets(), which is unsafe.
+enter name:phil
+phil
+              </code>
+            </pre>
+
+              <p>Running the same application with bad input:</p>
+              <pre>
+              <code>$ ./a.out
+warning: this program uses gets(), which is unsafe.
+enter name:something way too long
+something way too long
+zsh: abort      ./a.out
+              </code>
+            </pre>
+              <p>
+                The problem lies in that the array <code>buf</code> is too short
+                to store the long input. The documentation for the functions
+                <code>gets(char*)</code> (man7) also mentions that
+                <code>gets()</code> is unsafe, due to the fact that the caller
+                does not know how big the receiving buffer has to be.
+              </p>
+              <p>
+                The error message <code>zsh: abort</code> is due to a bound
+                checking which is done after calling certain functions (Intel).
+                Since the <code>gets()</code> is still writing into valid
+                virtual memory, no hardware exception is thrown. We can get rid
+                of the <code>zsh: abort</code> message by disabling the bound
+                check:
+              </p>
+              <pre>
+              <code>$ cc buffer-overflow.c -fno-stack-protector 
+$ ./a.out 
+warning: this program uses gets(), which is unsafe.
+enter name:something way too long
+something way too long
+              </code>
+            </pre>
+
+              <p>
+                However, entering a value which will write past the allocated
+                virtual memory will cause a segmentation fault. We can force the
+                issue by providing some input which is way too big:
+              </p>
+              <pre>
+              <code>$ cat /dev/zero | ./a.out
+warning: this program uses gets(), which is unsafe.
+zsh: broken pipe         cat /dev/zero | 
+zsh: segmentation fault  ./a.out
+              </code>
+            </pre>
+
+              <h4>References:</h4>
+              <ul class="alt">
+                <li>
+                  man7 (N.D.) Linux manual page. Available from:
+                  https://man7.org/linux/man-pages/man3/gets.3.html [Accessed:
+                  20 May 2025]
+                </li>
+                <li>
+                  Intel (N.D.) fstack-protector. Available from:
+                  https://www.intel.com/content/www/us/en/docs/dpcpp-cpp-compiler/developer-guide-reference/2023-1/fstack-protector.html
+                  [Accessed: 20 May 2025]
+                </li>
+              </ul>
+
+              <h2>Part II</h2>
+
+              <blockquote>
+                Now carry out a comparison of your work in C, with one in Python
+                [...]
+              </blockquote>
+
+              <pre>
+              <code>buffer=[None]*10
+for i in range (0,11):
+  buffer[i]=7
+print(buffer)
+              </code>
+            </pre>
+
+              <h4>What is the result?</h4>
+              <p>
+                Similiar to the C program, the application runs into memory
+                related issues, since the loop is overrunning the bounds of the
+                defined buffer. However, because python is a high-level
+                language, we receive a detailed report about the error and the
+                location of where it happened:
+              </p>
+              <pre>
+                  <code>$ python3 overflow.py
+Traceback (most recent call last):
+  File "[...]/test/overflow.py", line 3, in &lt;module&gt;
+    buffer[i]=7
+    ~~~~~~^^^
+IndexError: list assignment index out of range
+              </code>
+            </pre>
+
+              <h4>Run pylint and evaluate the output</h4>
+              <pre>
+              <code>$ pylint overflow.py              
+************* Module overflow
+overflow.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+
+------------------------------------------------------------------
+Your code has been rated at 7.50/10 (previous run: 7.50/10, +0.00)
+              </code>
+            </pre>
+              <p>
+                The linter does not help with logic errors, as its purpose is to
+                ensure style guidelines.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

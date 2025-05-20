@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Secure Programming Languages</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/languages.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -530px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <div>
+              <header class="major">
+                <h1>Secure Languages</h1>
+              </header>
+              <p style="font-size: smaller">
+                (In regards to questionary from UoE - Unit 3)
+              </p>
+              <h4>
+                What factors determine whether a programming language is secure
+                or not?
+              </h4>
+              <p>
+                Programming languages are characterized through a variety of
+                security attributes, each influenced by pitfalls and highlights
+                of their predecessors or last-gen languages. Rust, for example,
+                is widely recognised within the programming community for its
+                robust memory safety mechanisms. This is primarily attributed to
+                its borrow-checker, a feature that enforces strict memory
+                ownership rules by ensuring that a resource's lifecycle is
+                managed by only one entity at a time, though it allows to
+                transfer ownership between entities (Blandy et al 2018). This
+                mitigates the risks related to memory access and data races.
+              </p>
+
+              <p>
+                In contrast, many other programming languages emphasise garbage
+                collection as a core security feature. Garbage collection
+                automates memory management, thereby reducing the chance of
+                memory leaks and the likelihood of memory exhaustion (Putten et
+                al 2022), which are common vulnerabilities in manual memory
+                management paradigms.
+              </p>
+
+              <p>
+                At a foundational level, type-safety is a must to programming
+                language security. Type-safety acts as a contractual framework
+                enforced by the compiler, ensuring that operations within the
+                application adhere strictly to predefined data types. Type
+                safety therefore contrasts sharply with dynamic programming
+                languages, where flexible type handling can introduce
+                vulnerabilities and runtime errors if not managed carefully
+                (Chess et al 2007).
+              </p>
+
+              <p>
+                In addition to type safety, static analysis plays a crucial role
+                in verifying the logical correctness of a program. Static
+                analysis involves examining the source code without executing
+                it, allowing for the early detection of potential errors and
+                vulnerabilities (Chess et al 2007).
+              </p>
+
+              <h4>Could Python be classed as a secure language?</h4>
+              <p>
+                Python is a dynamically typed language, making it vulnerable to
+                runtime exceptions when functions are executed with incorrect
+                parameter types. While the use of type annotations and static
+                analysis tools offers useful feedback for ensuring correct type
+                usage, their effectiveness shrinks when dealing with third-party
+                libraries that lack type annotations. Even though Python's
+                standard library is robust, mature, and well-maintained - which
+                is critical to mitigate potential security concerns - I would
+                not classify Python as a secure programming language.
+              </p>
+
+              <h4>
+                Would Python be a better language to create operating systems
+                than C?
+              </h4>
+              <p>
+                Python offers convenience through multiple layers of
+                abstraction, however, many of those abstractions are not
+                designed for performance, and hence not suitable for developing
+                operating systems. Additionally, as an interpreted language,
+                Python itself can not be run natively, which is necessary for a
+                system programming language.
+              </p>
+
+              <div>
+                <h4>References:</h4>
+                <ul class="alt">
+                  <li>
+                    Blandy, J. & Orendorff, J. (2018) Programming Rust: fast,
+                    safe systems development. First edition. Beijing, China:
+                    O'reilly.
+                  </li>
+                  <li>
+                    Chess, B. & West, J. (2007) Secure programming with static
+                    analysis. 1st edition. Place of publication not identified:
+                    Addison Wesley.
+                  </li>
+                  <li>
+                    Putten, M. van & Kennedy, S. (2022) Java Memory Management :
+                    A Comprehensive Guide to Garbage Collection and JVM Tuning.
+                    1st edition. Birmingham: Packt Publishing, Limited.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
