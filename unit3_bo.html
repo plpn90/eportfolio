@@ -68,8 +68,7 @@ int main(int argc, char **argv)
   gets(buf); // read from stdio (sensitive function!)
   printf("%s\n", buf); // print out data stored in buf
   return 0; // 0 as return value
-}
-              </code>
+} </code>
             </pre>
 
               <blockquote>
@@ -91,8 +90,7 @@ int main(int argc, char **argv)
               <code>$ ./a.out
 warning: this program uses gets(), which is unsafe.
 enter name:phil
-phil
-              </code>
+phil </code>
             </pre>
 
               <p>Running the same application with bad input:</p>
@@ -101,8 +99,7 @@ phil
 warning: this program uses gets(), which is unsafe.
 enter name:something way too long
 something way too long
-zsh: abort      ./a.out
-              </code>
+zsh: abort      ./a.out </code>
             </pre>
               <p>
                 The problem lies in that the array <code>buf</code> is too short
@@ -124,8 +121,7 @@ zsh: abort      ./a.out
 $ ./a.out 
 warning: this program uses gets(), which is unsafe.
 enter name:something way too long
-something way too long
-              </code>
+something way too long </code>
             </pre>
 
               <p>
@@ -137,8 +133,7 @@ something way too long
               <code>$ cat /dev/zero | ./a.out
 warning: this program uses gets(), which is unsafe.
 zsh: broken pipe         cat /dev/zero | 
-zsh: segmentation fault  ./a.out
-              </code>
+zsh: segmentation fault  ./a.out </code>
             </pre>
 
               <h4>References:</h4>
@@ -166,8 +161,7 @@ zsh: segmentation fault  ./a.out
               <code>buffer=[None]*10
 for i in range (0,11):
   buffer[i]=7
-print(buffer)
-              </code>
+print(buffer) </code>
             </pre>
 
               <h4>What is the result?</h4>
@@ -184,8 +178,7 @@ Traceback (most recent call last):
   File "[...]/test/overflow.py", line 3, in &lt;module&gt;
     buffer[i]=7
     ~~~~~~^^^
-IndexError: list assignment index out of range
-              </code>
+IndexError: list assignment index out of range </code>
             </pre>
 
               <h4>Run pylint and evaluate the output</h4>
@@ -195,8 +188,7 @@ IndexError: list assignment index out of range
 overflow.py:1:0: C0114: Missing module docstring (missing-module-docstring)
 
 ------------------------------------------------------------------
-Your code has been rated at 7.50/10 (previous run: 7.50/10, +0.00)
-              </code>
+Your code has been rated at 7.50/10 (previous run: 7.50/10, +0.00) </code>
             </pre>
               <p>
                 The linter does not help with logic errors, as its purpose is to
