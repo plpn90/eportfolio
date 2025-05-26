@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Evil RegEx</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/evil-regex.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -330px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+
+      .inline-diagram-div > .pad {
+        width: 25%;
+        height: auto;
+      }
+
+      .inline-diagram img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        /* filter: blur(0.5px); */
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <!-- <div id="topic-banner"></div> -->
+            <div>
+              <header class="major">
+                <h1>Regular Expressions</h1>
+              </header>
+              <p>
+                Regular expressions are a powerful tool for text analysis,
+                enabling operations such as pattern matching, text comparison,
+                and advanced techniques like look-ahead and look-behind
+                assertions. However, certain features - especially those
+                involving backtracking - can create complex execution paths.
+                Backtracking happens when the regex engine has to revisit
+                previous states to explore all possible matches, which may cause
+                exponential time complexity if patterns are poorly designed. For
+                better performance, regular expressions are typically compiled
+                into a virtual machine-like structure, enabling more systematic
+                analysis and execution (Nagy, 2018).
+              </p>
+
+              <div class="table-wrapper">
+                <h4>Examples</h4>
+                <p>
+                  Following a table to present a few basic examples to showcase
+                  typical uses and potential issues.
+                </p>
+                <table>
+                  <thead>
+                    <tr>
+                      <th style="width: 20%">Expression</th>
+                      <th style="width: 30%">Matches</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>a<br />ab</td>
+                      <td><code>a</code><br /><code>ab</code></td>
+                      <td>
+                        Matches an exact character or sequence of characters as
+                        written, without allowing for repetition or variation.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>.</td>
+                      <td>&lt;any-character&gt;</td>
+                      <td>The '.' is a wildcard for any character</td>
+                    </tr>
+                    <tr>
+                      <td>a | b</td>
+                      <td><code>a</code> or <code>b</code></td>
+                      <td>
+                        The or-operator (<code>|</code>) is used to match either
+                        of given characters, but not both.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>a-z<br />0-9</td>
+                      <td>
+                        &lt;any alphabetic character&gt;<br />&lt;any numerical
+                        character&gt;
+                      </td>
+                      <td>
+                        The range operator (<code>-</code>) matches any
+                        character between and including the starting to the
+                        ending character. This implies that the character
+                        encoding must be naturally ordered, ie:
+                        <ul>
+                          <li>'a' < 'b' < 'c' ...</li>
+                          <li>'0' < '1' < '2' ...</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>a+<br />a*</td>
+                      <td>
+                        <code>a</code> or <code>aaaaaa</code><br />&lt;empty&gt;
+                        or <code>aaaa</code>
+                      </td>
+                      <td>
+                        <code>*</code> and <code>+</code> specify repetition of
+                        the preceding pattern. <code>+</code> requires at least
+                        one occurrence, while <code>*</code> allows zero or more
+                        repetitions.
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        ( <i>pattern</i> )<br />(?&lt;name&gt;<i>pattern</i> )
+                      </td>
+                      <td>
+                        Matches against <code><i>pattern</i></code>
+                      </td>
+                      <td>
+                        Enclosing a pattern in parentheses
+                        <code>( )</code> creates a capturing group, allowing the
+                        matched portion to be referenced or reused later in the
+                        regular expression. Groups can be accessed by their
+                        index or assigned a name for clarity. Captured groups
+                        enable advanced features such as back-referencing, which
+                        match the same text as previously captured, making it
+                        possible to enforce repitions of resolved patterns
+                        within the input.
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <p>
+                A common pitfall of regex arises from patterns involving
+                repetition. When the engine encounters repeated elements, it
+                must look ahead to match additional occurrences and keep track
+                of all possible backtracking paths, which can quickly become
+                complex and slow. Not only does it increase memory usage, it
+                further can make debugging or optimizing regexes more
+                challenging, especially when nested or overlapping groups are
+                involved.
+              </p>
+
+              <h2>Evil RegEx</h2>
+
+              <p>
+                "Evil regex" is a term for regular expressions that are
+                unintentionally or maliciously formed to produce excessive
+                backtracking and degrade performance. These patterns often look
+                innocent but can take exponential processing power to process
+                certain inputs, potentially freezing applications or causing
+                denial-of-service vulnerabilities. The classic example is the
+                pattern
+                <code>(a+)+</code>, which tries to match one or more groups of
+                one or more 'a' characters. When given a long string of 'a's
+                followed by a non-matching character, the regex engine explores
+                a huge number of possible ways to partition the string,
+                backtracking repeatedly before failing (Barlas et al 2022).
+              </p>
+
+              <p>
+                To avoid evil regexes, it is important to design patterns that
+                avoid nested repetition. Prefer atomic groups or
+                non-backtracking constructs where possible. Always test regexes
+                with edge cases and long inputs to ensure they perform
+                efficiently. Tools exist to analyze regexes for potential
+                backtracking risks, helping developers write safer and faster
+                patterns.
+              </p>
+
+              <div>
+                <h4>References:</h4>
+                <ul class="alt">
+                  <li>
+                    Barlas, E., Du, X. and Davis, J.C. (2022) 'Exploiting input
+                    sanitization for regex denial of service',
+                    <i>
+                      Proceedings of the 44th International Conference on
+                      Software Engineering (ICSE).
+                    </i>
+                    [Unknown location], May 2022. New York, USA: Association for
+                    Computing Machinery. (pp. 883-895).
+                  </li>
+                  <li>
+                    Nagy, Z. (2018) Regex Quick Syntax Reference : Understanding
+                    and Using Regular Expressions. 1st ed. 2018. [Online].
+                    Berkeley, CA: Apress.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="inner">
+            <header>
+              <h2>Exercise</h2>
+            </header>
+
+            <blockquote>
+              The UK postcode system consists of a string that contains a number
+              of characters and numbers - a typical example is:
+              <code>ST7 9HV</code>. Create a python program that implements a
+              regex that complies with the rules provided above - test it
+              against the examples:
+              <ul>
+                <li>M1 1AA</li>
+                <li>M60 1NW</li>
+                <li>CR2 6XH</li>
+                <li>DN55 1PT</li>
+                <li>W1A 1HQ</li>
+                <li>EC1A 1BB</li>
+              </ul>
+            </blockquote>
+
+            <pre>
+              <code>import re
+
+valid_postcodes = [
+    "ST7 9HV",
+    "M1 1AA",
+    "M60 1NW",
+    "CR2 6XH",
+    "DN55 1PT",
+    "W1A 1HQ",
+    "EC1A 1BB",
+]
+
+invalid_postcodes = [
+    "INVALID",
+    "",
+    "ST77A 91HV",
+    "m1 1aa",
+    "M! 1AA",
+    "M11AA",
+    "CR2 66X",
+    "Very looooooooooooooooooooooooooong input",
+]
+
+
+def is_valid_uk_postcode(postcode):
+    pattern = "[A-Z]{1,2}[0-9A]{1,2} [0-9][A-Z]{1,2}"
+    return re.match(pattern, postcode.strip()) is not None
+
+
+for code in valid_postcodes:
+    if not is_valid_uk_postcode(code):
+        print(code, "is not a valid UK postcode")
+
+for code in invalid_postcodes:
+    if is_valid_uk_postcode(code):
+        print(code, "is expected to fail")
+
+print("done") </code>
+            </pre>
+
+            <p>
+              While probably not confiorm to the whole UK postcode notation, the
+              above script does pass the given examples, while also testing
+              against invalid inputs.
+            </p>
+            <p>Executing the python script prints: <code>done</code></p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

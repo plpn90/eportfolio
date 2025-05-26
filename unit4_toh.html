@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Towers of Hanoi</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/towerofhanoi.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -330px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+
+      .inline-diagram-div > .pad {
+        width: 25%;
+        height: auto;
+      }
+
+      .inline-diagram img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        /* filter: blur(0.5px); */
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <!-- <div id="topic-banner"></div> -->
+            <div>
+              <header class="major">
+                <h1>Towers of Hanoi</h1>
+              </header>
+
+              <p>
+                My version of 'Towers of Hanoi', implemented in a recursive
+                manner:
+              </p>
+
+              <pre>
+                <code>class Peg:
+    disks: list[int]
+    pointer: int
+    max: int
+
+    def __init__(self, n_disks: int) -> None:
+        self.disks = [0] * n_disks
+        self.pointer = 0
+        self.max = n_disks
+
+    def push_disk(self, disk_width: int) -> None:
+        if self.pointer >= self.max:
+            raise IndexError("pushing too many disk on peg")
+
+        self.disks[self.pointer] = disk_width
+        self.pointer = self.pointer + 1
+
+    def pop_disk(self) -> int:
+        if not self.pointer:
+            raise IndexError("no disk to pop")
+
+        index = self.pointer - 1
+        r = self.disks[index]
+        self.pointer = self.pointer - 1
+        return r
+
+    def validate(self):
+        if not self.pointer:
+            return
+
+        last = self.disks[0]
+        for i in range(1, self.pointer):
+            cur = self.disks[i]
+            if last <= cur:
+                raise IndexError("bigger disk is lying on smaller disk")
+
+            last = cur
+
+    def fill(self):
+        disk_width = self.max
+        for _ in range(self.max):
+            self.push_disk(disk_width)
+            disk_width = disk_width - 1
+
+
+def move_disks(n, _from: Peg, to: Peg, tmp: Peg) -> int:
+    if n == 1:
+        disk = _from.pop_disk()
+        to.push_disk(disk)
+        to.validate()
+        return 1
+    else:
+        m = move_disks(n - 1, _from, tmp, to)
+        m += move_disks(1, _from, to, tmp)
+        m += move_disks(n - 1, tmp, to, _from)
+        return m
+
+
+def hanoi():
+    n = int(input("Enter number of disks: "))
+
+    a, b, c = [Peg(n)] * 3
+    a.fill()
+
+    move_counter = move_disks(n, a, b, c)
+    print(f"\nTotal moves: {move_counter}")
+
+
+hanoi()</code>
+              </pre>
+
+              <p>Execution:</p>
+              <pre>
+                <code>$ python3 hanoi.py
+Enter number of disks: 5
+Total moves: 31
+
+$ python3 hanoi.py
+Enter number of disks: 12
+Total moves: 4095
+
+$ python3 hanoi.py
+Enter number of disks: 21
+Total moves: 2097151</code>
+              </pre>
+
+              <p>
+                As shown by the output, the number of moves required grows
+                exponentially with the number of disks. Specifically, the
+                minimum number of moves needed to solve the puzzle is:
+                <code>2^n - 1</code>, where n is the number of disks.
+              </p>
+
+              <h4>
+                What limits the number of iterations? What is the implication
+                for application and system security?
+              </h4>
+
+              <p>
+                The main constraints on the number of recursive iterations are
+                the machine's available memory and Python's built-in recursion
+                limit. Each recursive call reserves a few bytes on the stack,
+                and if the stack grows too large, it can take up all of the
+                program's alloted memory, also known as 'stack overflow'
+                (Rubio-Sánchez 2018). Furthermore, Python enforces a maximum
+                recursion depth to prevent stack overflows, raising a
+                <code>RecursionError</code> when this limit is reached.
+              </p>
+
+              <p>
+                Considering the execution model of the Towers of Hanoi, several
+                potential issues appear that are relevant to application
+                security. Algorithmic complexity plays an important role in
+                ensuring that operations can scale efficiently. Using Big-O
+                notation allows developers to estimate how algorithms perform as
+                input grows. Additionally, it is important to validate and
+                sanitize user input, and to enforce sane limits on operation
+                lengths. These practices help prevent denial-of-service attacks
+                that could result from excessively long or infinite operations.
+              </p>
+
+              <div>
+                <h4>References:</h4>
+                <ul class="alt">
+                  <li>
+                    Rubio-Sánchez, M. (2018) Introduction to recursive
+                    programming. 1st edition. Boca Raton, FL: CRC Press, Taylor
+                    & Francis Group.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
