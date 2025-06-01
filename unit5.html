@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Cyclomatic Complexity</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/cycliccomplex.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -200px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+
+      .inline-diagram-div > .pad {
+        width: 25%;
+        height: auto;
+      }
+
+      .inline-diagram img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        /* filter: blur(0.5px); */
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <!-- <div id="topic-banner"></div> -->
+            <div>
+              <header class="major">
+                <h1>Cyclomatic Complexity</h1>
+              </header>
+              <p>
+                Cyclomatic complexity is a metric used to measure the complexity
+                of software by plotting and counting the pathes of
+                inter-dependent componentents throughout the source code.
+                Developed by Thomas J. McCabe in 1976, this metric helps
+                developers understand the structural complexity of their code,
+                making it easier to identify areas that may be prone to
+                maintainability concerns. Cyclomatic complexity is calculated by
+                constructing a flowchart of the program, where nodes typically
+                represent objects and edges represent flow paths (Kafura 2025).
+                It is important to note that when J. McCabe introduced
+                cyclomatic complexity in 1976, Object-Oriented Programming (OOP)
+                was not yet widely adopted. The metric was originally designed
+                to assess the complexity of procedures, and not objects (Kafura
+                2025).
+              </p>
+              <p>
+                A higher cyclomatic complexity indicates that a component has
+                more decision branching-points, such as if statements, loops,
+                and case statements, which can make the code harder to test and
+                maintain. Conversely, a lower value suggests simpler, more
+                straightforward code. By monitoring cyclomatic complexity, teams
+                can set thresholds for acceptable complexity and prioritize
+                refactoring efforts for overly complex modules.
+              </p>
+              <p>
+                Although cyclomatic complexity reveals how interconnected a
+                component is, it does not indicate whether this complexity is
+                beneficial or problematic (Ebert 2016). In modern project
+                management, where functions and objects are often organized into
+                separate libraries, complexity frequently resides in the deeper
+                branches of a project - within detailed implementations.
+                Meanwhile, the true complexity may lie at the root level, where
+                various components are integrated to form the actual system.
+              </p>
+              <p>
+                In my view, cyclomatic complexity alone does not provide a good
+                picture of code quality. Good design principles, such as those
+                found in SOLID, encourage developers to create well-structured,
+                independent, and modular software, which has a greater impact on
+                maintainability and robustness than complexity metrics alone. In
+                particular, the Dependency Inversion Principle (DIP) from the
+                SOLID framework states that high-level modules should not depend
+                directly on low-level implementations, but should interact
+                through interfaces (Joshi 2016). This approach promotes better
+                design by making components more testable and flexible, as
+                dependencies can be easily substituted during unit testing
+                without requiring the full environment. Adopting good design
+                principles leads to better maintainability and scalability,
+                making cyclomatic complexity less critical.
+              </p>
+              <div>
+                <h4>References:</h4>
+                <ul class="alt">
+                  <li>
+                    Ebert, C. et al. (2016) Cyclomatic Complexity. IEEE
+                    software. [Online] 33 (6), 27-29.
+                  </li>
+                  <li>
+                    Joshi, B. (2016) Beginning SOLID Principles and Design
+                    Patterns for ASP.NET  Developers. 1st ed. 2016. [Online].
+                    Berkeley, CA: Apress.
+                  </li>
+                  <li>
+                    Kafura, D. (2025) Reflections on McCabe's Cyclomatic
+                    Complexity. IEEE transactions on software engineering.
+                    [Online] 51 (3), 700-705.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
