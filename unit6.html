@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Linting</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/languages.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -330px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+
+      .inline-diagram-div > .pad {
+        width: 25%;
+        height: auto;
+      }
+
+      .inline-diagram img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        /* filter: blur(0.5px); */
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <!-- <div id="topic-banner"></div> -->
+            <div>
+              <header class="major">
+                <h1>Linting</h1>
+              </header>
+              <h3>Activities</h3>
+
+              <h4>Question 1</h4>
+              <blockquote>
+                Run styleLint.py. What happens when the code is run? Can you
+                modify this code for a more favourable outcome? What amendments
+                have you made to the code?
+              </blockquote>
+              <pre>
+                  <code>File "/Users/plpn/code/uoe/unit6/testing-with-python/styleLint.py", line 5
+    """ Return factorial of n """
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndentationError: expected an indented block after function definition on line 4</code>
+              </pre>
+              <p>
+                The error occurs because the Python source code is incorrectly
+                indented. In Python, indentation is crucial as it defines the
+                scope of code blocks. Correcting the indentation does resolve
+                the error message:
+              </p>
+              <pre>
+                <code>def factorial(n):
+    """Return factorial of n"""
+    if n == 0:
+        return 1
+    return n * factorial(n - 1)</code>
+              </pre>
+
+              <h4>Question 2</h4>
+
+              <blockquote>
+                Run pylint on pylintTest.py. Review each of the code errors
+                returned. Can you correct each of the errors identified by
+                pylint?
+              </blockquote>
+
+              <pre>
+                <code>************* Module pylintTest2
+pylintTest2.py:26:1: E0001: Parsing failed: 'Missing parentheses in call to 'print'. 
+Did you mean print(...)? (pylintTest2, line 26)' (syntax-error)</code>
+              </pre>
+
+              <p>
+                However, correcting the print-statement on line 26 just revealed
+                more flaws:
+              </p>
+
+              <pre>
+                <code>************* Module pylintTest2
+pylintTest2.py:5:0: C0303: Trailing whitespace (trailing-whitespace)
+pylintTest2.py:8:0: C0325: Unnecessary parens after '=' keyword (superfluous-parens)
+pylintTest2.py:12:0: W0311: Bad indentation. Found 2 spaces, expected 4 (bad-indentation)
+pylintTest2.py:13:0: W0311: Bad indentation. Found 4 spaces, expected 8 (bad-indentation)
+pylintTest2.py:14:0: W0311: Bad indentation. Found 6 spaces, expected 12 (bad-indentation)
+pylintTest2.py:15:0: W0311: Bad indentation. Found 4 spaces, expected 8 (bad-indentation)
+pylintTest2.py:16:0: W0311: Bad indentation. Found 6 spaces, expected 12 (bad-indentation)
+pylintTest2.py:17:0: W0311: Bad indentation. Found 6 spaces, expected 12 (bad-indentation)
+pylintTest2.py:18:0: W0311: Bad indentation. Found 4 spaces, expected 8 (bad-indentation)
+pylintTest2.py:19:0: W0311: Bad indentation. Found 6 spaces, expected 12 (bad-indentation)
+pylintTest2.py:20:0: W0311: Bad indentation. Found 8 spaces, expected 16 (bad-indentation)
+pylintTest2.py:21:0: W0311: Bad indentation. Found 12 spaces, expected 20 (bad-indentation)
+pylintTest2.py:22:0: W0311: Bad indentation. Found 8 spaces, expected 16 (bad-indentation)
+pylintTest2.py:23:0: W0311: Bad indentation. Found 10 spaces, expected 20 (bad-indentation)
+pylintTest2.py:24:0: W0311: Bad indentation. Found 10 spaces, expected 20 (bad-indentation)
+pylintTest2.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+pylintTest2.py:1:0: C0103: Module name "pylintTest2" doesn't conform to snake_case naming style (invalid-name)
+pylintTest2.py:6:0: C0103: Constant name "shift" doesn't conform to UPPER_CASE naming style (invalid-name)
+pylintTest2.py:7:9: E0602: Undefined variable 'raw_input' (undefined-variable)
+pylintTest2.py:8:8: E0602: Undefined variable 'raw_input' (undefined-variable)
+pylintTest2.py:9:0: C0103: Constant name "letters" doesn't conform to UPPER_CASE naming style (invalid-name)
+pylintTest2.py:10:0: C0103: Constant name "encoded" doesn't conform to UPPER_CASE naming style (invalid-name)
+pylintTest2.py:14:6: C0103: Constant name "encoded" doesn't conform to UPPER_CASE naming style (invalid-name)
+pylintTest2.py:16:6: C0103: Constant name "x" doesn't conform to UPPER_CASE naming style (invalid-name)
+pylintTest2.py:17:6: C0103: Constant name "encoded" doesn't conform to UPPER_CASE naming style (invalid-name)
+pylintTest2.py:21:12: C0103: Constant name "encoded" doesn't conform to UPPER_CASE naming style (invalid-name)
+pylintTest2.py:23:10: C0103: Constant name "x" doesn't conform to UPPER_CASE naming style (invalid-name)
+pylintTest2.py:24:10: C0103: Constant name "encoded" doesn't conform to UPPER_CASE naming style (invalid-name)
+
+-----------------------------------
+Your code has been rated at 0.00/10</code>
+              </pre>
+
+              <p>Refactoring the code involved several improvements:</p>
+              <ul>
+                <li>
+                  The encode and decode logic were separated into distinct
+                  functions, which also solved the indentation issues.
+                </li>
+                <li>
+                  The built-in function name was corrected to 'input()' for
+                  proper usage.
+                </li>
+                <li>
+                  Variables <code>shift</code> and <code>letters</code> were
+                  renamed using uppercase to follow naming conventions for
+                  constant values.
+                </li>
+                <li>
+                  The main program logic, including input prompts and function
+                  calls, was placed inside a conditional block to ensure it only
+                  runs when the module is executed directly (tested with
+                  <code>__name__ == "__main__"</code>).
+                </li>
+                <li>Added docstring for functions and module</li>
+                <li>
+                  Rename the file into PEP8 conform naming convention:
+                  pylintTest.py -> pylint_test.py
+                </li>
+              </ul>
+
+              <pre>
+                <code>"""Module doc-string, which contains some information about this module.
+
+This module contains functions for simple encoding and decoding of words,
+and also can either be called directly, or used as package.
+"""
+
+import string
+import sys
+
+SHIFT = 3
+LETTERS = string.ascii_letters + string.punctuation + string.digits
+
+
+def encode(word: str) -> str:
+    """Encodes the given word"""
+    encoded = ""
+    for letter in word:
+        if letter == " ":
+            encoded = encoded + " "
+        else:
+            x = LETTERS.index(letter) + SHIFT
+            encoded = encoded + LETTERS[x]
+    return encoded
+
+
+def decode(encoded: str) -> str:
+    """Decodes the given encoded word"""
+    word = ""
+    for letter in encoded:
+        if letter == " ":
+            word = word + " "
+        else:
+            x = LETTERS.index(letter) - SHIFT
+            word = word + LETTERS[x]
+    return word
+
+
+if __name__ == "__main__":
+    choice = input("would you like to encode or decode?: ")
+    choose_from = {"encode": encode, "decode": decode}
+    if choice not in choose_from:
+        print("wrong input")
+        sys.exit(1)
+
+    func = choose_from[choice]
+    input_ = input("Please enter text: ")
+    print(func(input_)) </code>
+              </pre>
+
+              <p>
+                After refactoring, executing <code>pylint</code> now showing:
+              </p>
+              <pre>
+                <code>--------------------------------------------------------------------
+Your code has been rated at 10.00/10 (previous run: 10.00/10, +0.00)</code>
+              </pre>
+
+              <h4>Question 3</h4>
+
+              <blockquote>
+                Run flake8 on pylintTest.py Review the errors returned. In what
+                way does this error message differ from the error message
+                returned by pylint? Run flake8 on metricTest.py. Can you correct
+                each of the errors returned by flake8? What amendments have you
+                made to the code?
+              </blockquote>
+
+              <p>Output:</p>
+              <pre>
+                <code>pylintTest.py:5:1: W293 blank line contains whitespace
+pylintTest.py:7:10: F821 undefined name 'raw_input'
+pylintTest.py:8:9: F821 undefined name 'raw_input'
+pylintTest.py:12:3: E111 indentation is not a multiple of 4
+pylintTest.py:14:7: E111 indentation is not a multiple of 4
+pylintTest.py:16:7: E111 indentation is not a multiple of 4
+pylintTest.py:17:7: E111 indentation is not a multiple of 4
+pylintTest.py:17:14: E225 missing whitespace around operator
+pylintTest.py:19:7: E111 indentation is not a multiple of 4
+pylintTest.py:23:11: E111 indentation is not a multiple of 4
+pylintTest.py:24:11: E111 indentation is not a multiple of 4</code>
+              </pre>
+
+              <p>
+                Similar to pylint, flake8 checks the coding style of the given
+                file. However, after correcting function names and indentation,
+                flake8 did not report any further issues. Therefore, I would
+                prefer pylint, as it provides more detailed feedback.
+              </p>
+
+              <h4>Question 4</h4>
+
+              <blockquote>
+                Run mccabe on sums.py. What is the result? Run mccabe on
+                sums2.py. What is the result? What are the contributors to the
+                cyclomatic complexity in each piece of code?
+              </blockquote>
+
+              <p>Output:</p>
+              <pre>
+                <code>$ python -m mccabe sums.py 
+4:0: 'test_sum' 1
+If 7 2
+
+$ python -m mccabe sums2.py
+4:0: 'test_sum' 1
+7:0: 'test_sum_tuple' 1
+If 10 2</code>
+              </pre>
+
+              <p>
+                For both files, function <code>test_sum</code> and
+                <code>test_sum_tuple</code> do not have any intrinsic cyclomatic
+                complexity, however both function call <code>assert</code>,
+                which technically has branching, however that seems to be
+                ignored. Also, the entrypoint in both files is tested with
+                <code>if __name__ == "__main__"</code>, which causes the
+                complexity to rise for given lines.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
