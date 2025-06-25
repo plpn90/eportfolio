@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Cryptography</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/sec_computing.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -330px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+
+      .inline-diagram-div > .pad {
+        width: 25%;
+        height: auto;
+      }
+
+      .inline-diagram img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        /* filter: blur(0.5px); */
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <!-- <div id="topic-banner"></div> -->
+            <div>
+              <header class="major">
+                <h1>Cryptography - Activities</h1>
+              </header>
+
+              <blockquote>
+                Create a python program (you can use the Jupyter Notebooks
+                space) that can take a text file and output an encrypted version
+                as a file in your folder on the system. Demonstrate your program
+                operation in this week's seminar session.
+              </blockquote>
+
+              <p>
+                I think the tutorialpoint was mostly showing encodings or weak
+                cryptography. For symmetric encryption, tutorialpoint tells us
+                to use DSA, which is regarded as obsolete and not as secure as
+                modern alternative. The current standard, Advanced Encryption
+                Standard (AES), isnt even mentioned. Diregarding that fact, I
+                chose the base64 encoding for my activity, beause base64 is
+                frequently used for transporting binary-data over human-readable
+                channels (ie. ASCII or UTF-8 encoded).
+              </p>
+
+              <pre>
+                <code>from io import BufferedReader, TextIOWrapper
+from sys import argv, exit as sysexit, stdout
+from base64 import b64encode
+
+_FD_STDOUT = 1  # POSIX compliant file-descriptor stdout
+
+
+def encrypt_file(infile: BufferedReader, outfile: TextIOWrapper):
+    data = infile.read()
+    encoded = b64encode(data)
+    outfile.write(str(encoded, "utf8"))
+
+
+if __name__ == "__main__":
+    # first argument is executing programs name, hence we skip the first arg
+    args = argv[1::]
+    if not args:
+        print("usage: crypto &lt;input-file&gt; [&lt;output-file&gt;]")
+        print("       if &lt;output-file&gt; is not given, print to stdout")
+        sysexit(1)
+
+    out_file: TextIOWrapper | None = None
+
+    try:
+        if len(args) == 1:
+            if isinstance(stdout, TextIOWrapper):
+                out_file = stdout
+            else:
+                out_file = open(_FD_STDOUT, "a")
+        else:
+            out_file = open(args[1], "w")
+
+        with out_file, open(args[0], "rb") as in_file:
+            encrypt_file(in_file, out_file)
+    except Exception as e:
+        print("error while trying to encrypt file:", str(e))
+        sysexit(1)</code>
+              </pre>
+
+              <h4>Tests</h4>
+              <pre>
+                <code># code is stored in crypto.py.. we call crypto.py with itself,
+# which results in the python script encoding itself
+$ python crypto.py crypto.py
+ZnJvbSBpbyBpbXBvcnQgQnVmZmVyZWRSZWFkZXIsIFRleHRJT1dyYX[... few hundred characters]
+
+# we also can test if the encryption is correct by using POSIX decoders.
+# to decode base64, we can use the shell command: base64 -d
+$ python crypto.py crypto.py | base64 -d
+[ ... outputs the python-code from earlier ... ]
+</code>
+              </pre>
+
+              <h4>Would it meet the GDPR regulations?</h4>
+              <p>
+                No, base64 is not acceptable for properly encrypting sensible
+                data. In general, the GDPR has no strict mandate of which
+                cryptographic functions to use. The most reasonable alternative
+                would be to use RSA for asymmetric cryptography, and AES for
+                symmetric cryptography.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
