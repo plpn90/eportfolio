@@ -79,14 +79,31 @@
               </blockquote>
 
               <p>
-                I think the tutorialpoint was mostly showing encodings or weak
-                cryptography. For symmetric encryption, tutorialpoint tells us
-                to use DSA, which is regarded as obsolete and not as secure as
-                modern alternative. The current standard, Advanced Encryption
-                Standard (AES), isnt even mentioned. Diregarding that fact, I
-                chose the base64 encoding for my activity, beause base64 is
-                frequently used for transporting binary-data over human-readable
-                channels (ie. ASCII or UTF-8 encoded).
+                The blog post on tutorialspoint.com primarily focuses on
+                encoding techniques and weaker cryptographic methods. For
+                symmetric encryption, it recommends DSA, which is outdated and
+                less secure compared to Advanced Encryption Standard (AES). AES
+                offers stronger security and performance, making it the
+                preferred choice for modern encryption standards. It is widely
+                adopted due to its robust resistance against cryptographic
+                attacks, whereas DSA lacks the same level of reliability.
+              </p>
+
+              <p>
+                It is essential to distinguish between encoding and encryption.
+                Encoding, such as base64, is a method used to convert data into
+                a different format for efficient transmission or storage. It
+                does not provide security, as encoded data can be easily decoded
+                without a key. In contrast, encryption is designed to secure
+                data against unauthorised access by converting it into
+                unreadable cipher text, which requires a decryption key to
+                revert to its original form.
+              </p>
+
+              <p>
+                Even though it is not an encryption, I selected base64 encoding
+                for this activity due to its widespread use in transmitting
+                binary data over human-readable channels.
               </p>
 
               <pre>
@@ -145,10 +162,10 @@ $ python crypto.py crypto.py | base64 -d
 
               <h4>Would it meet the GDPR regulations?</h4>
               <p>
-                No, base64 is not acceptable for properly encrypting sensible
-                data. In general, the GDPR has no strict mandate of which
-                cryptographic functions to use. The most reasonable alternative
-                would be to use RSA for asymmetric cryptography, and AES for
+                No, base64 is not suitable for encrypting sensitive data. In
+                general, the GDPR does not explicitly mandate the use of
+                specific cryptographic functions. A reasonable alternative would
+                be to employ RSA for asymmetric cryptography and AES for
                 symmetric cryptography.
               </p>
             </div>
