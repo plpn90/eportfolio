@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Faceted Datatypes</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/facet.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -80px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+
+      .inline-diagram-div > .pad {
+        width: 25%;
+        height: auto;
+      }
+
+      .inline-diagram img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        /* filter: blur(0.5px); */
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <!-- <div id="topic-banner"></div> -->
+            <div>
+              <header class="major">
+                <h1>Faceted Datatypes</h1>
+              </header>
+              <p>
+                Security in computing offers various solutions to ensure
+                privacy, but ultimately, the end-user must decide to trust the
+                counter-party, whether it is a banking platform or the operating
+                system on your computer. Trusting the wrong entity can
+                compromise any security measure. This is particularly true for
+                software installed on your machine. Everyone has experienced the
+                notification for an update after opening a standard application.
+                Given that these applications communicate with servers, how can
+                we ensure that no sensitive information is disclosed (Capizzi et
+                al., 2008)?
+              </p>
+
+              <p>
+                Research has explored solutions to conceal sensitive data from
+                applications without the user's knowledge. Secure
+                multi-execution (also known as shadow execution) is one approach
+                (Schmitz et al., 2018). The term
+                <i>“secure multi-execution”</i> lacks a strict definition, but
+                it generally refers to running a (partially) untrusted
+                application in two separate modes simultaneously: the public
+                mode and the private mode. The public mode operates with active
+                internet connectivity but has no access to sensitive
+                information. In contrast, the private mode, while lacking
+                internet access to prevent potential data leaks, retains full
+                access to sensitive information. This dual-mode architecture
+                ensures that sensitive information is isolated from external
+                communication channels, enhancing overall system security.
+              </p>
+
+              <p>
+                Since any communication over the public channel must be secure,
+                it can be forwarded to the private channel, ensuring that both
+                modes maintain the same state (Capizzi et al., 2008). However,
+                there are instances when sensitive data must be transmitted
+                across the internet, such as for authentication or registering
+                for a new service. In these cases, the private channel allows
+                for explicit forwarding of information via the public channel.
+              </p>
+
+              <p>
+                One of these forms of shadow execution has been implemented in
+                Haskell, leveraging its robust type system. Haskell's monads
+                naturally support complex data types, ensuring data privacy by
+                embedding the operating channel within the datatype (Schmitz et
+                al., 2018). This is a clever solution for data segregation in
+                application design. For instance, while application event
+                logging is crucial, it can sometimes inadvertently include
+                sensitive information that shouldn't be visible in the log. A
+                smarter datatype that can infer its running mode could assist
+                developers in designing secure applications.
+              </p>
+
+              <div>
+                <h4>References:</h4>
+                <ul class="alt">
+                  <li>
+                    Capizzi, R., Longo, A., Venkatakrishnan, V. N. and Sistla,
+                    A. P. (2008), 'Preventing Information Leaks through Shadow
+                    Executions',
+                    <i
+                      >2008 Annual Computer Security Applications Conference
+                      (ACSAC)</i
+                    >. Anaheim, USA: IEEE. pp. 322-331.
+                  </li>
+
+                  <li>
+                    Schmitz, T., Algehed, M., Flanagan, C. and Russo, A. (2018)
+                    'Faceted Secure Multi Execution',
+                    <i
+                      >CCS '18: Proceedings of the 2018 ACM SIGSAC Conference on
+                      Computer and Communications Security</i
+                    >. New York, USA: Association for Computing Machinery. pp.
+                    1617-1634.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="inner">
+            <header>
+              <h2>Pros</h2>
+              <ul class="alt">
+                <li>
+                  Offloading the responsability for data security to the
+                  language will help making design decision easier.
+                </li>
+                <li>
+                  Static analyzers - tools which are used to verify application
+                  logic - could be enhanced to also verify data flow, and
+                  produce early warnings for when data is leaking.
+                </li>
+              </ul>
+
+              <h2>Cons</h2>
+              <ul class="alt">
+                <li>
+                  Hard to implement for languages which do not have strong-type
+                  systems. Python for example would have difficulties to
+                  disallow access to private values, as python's type-system is
+                  to flexible and is able to leak information (for example,
+                  <code>object.__dict__</code> would just leak any details).
+                </li>
+                <li>
+                  Virtually impossible to isolate external applications which
+                  are not natively build around this feature. Building a whole
+                  infrastructure with this technique will require alot of
+                  effort.
+                </li>
+              </ul>
+            </header>
+          </div>
+        </section>
+
+        <section>
+          <div class="inner">
+            <header><h2>Python example</h2></header>
+            <p>
+              A simple concept of how a multi-execution type could look in
+              python:
+            </p>
+            <pre>
+            <code>"""Secure multi-execution
+A simple idea and mockup to bring secure multi-execution to python
+"""
+
+class entity:
+    _is_public: bool
+    _value: tuple[object, object] 
+    """"contains values: ( public, private )"""
+
+    def __init__(self, is_public: bool, value, masked=None) -> None:
+        self._is_public = is_public
+        if is_public:
+            self._value = (value, None)
+        else:
+            self._value = (masked, value)
+
+    def _unpack(self, public_channel: bool):
+        is_public = public_channel or self._is_public
+        pub, priv = self._value
+        return pub if is_public else priv
+
+
+class channel:
+    _is_public: bool
+
+    def accept(self, e: entity):
+        data = e._unpack(self._is_public)
+        # do something with data
+
+
+def make_public(data) -> entity:
+    return entity(True, data)
+
+
+def make_private(data, masked) -> entity:
+    return entity(False, data, masked)</code>
+          </pre>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
