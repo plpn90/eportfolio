@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+  <head>
+    <title>Phil's e-Portfolio -- Full Disk Encryption</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
+    <style>
+      #topic-banner {
+        background-image: url(images/units/sec_computing.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 0 -330px;
+        opacity: 40%;
+        height: 450px;
+
+        mask: linear-gradient(black, black, transparent);
+        filter: blur(10px);
+      }
+
+      #main > section > div > div:last-child {
+        position: relative;
+        margin-top: -450px;
+        z-index: 2;
+      }
+
+      .inline-diagram-div > .pad {
+        width: 25%;
+        height: auto;
+      }
+
+      .inline-diagram img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+        /* filter: blur(0.5px); */
+      }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header">
+        <a href="index.html" class="logo"
+          ><strong>e-Portfolio</strong> back to main
+        </a>
+      </header>
+
+      <div id="topic-banner"></div>
+      <!-- Main -->
+      <div id="main" class="alt">
+        <!-- One -->
+        <section id="one">
+          <div class="inner">
+            <!-- <div id="topic-banner"></div> -->
+            <div>
+              <header class="major">
+                <h1>Full Disk Encryption</h1>
+              </header>
+
+              <p>
+                Full volume or partition encryption is a useful tool for
+                protecting sensitive data by ensuring it is encrypted before
+                being written to internal or external storage devices. This
+                approach helps safeguard information in the event of physical
+                theft of the storage medium. A variety of encryption tools exist
+                - some integrated directly into the operating system, which
+                eases the setup and experience (such as BitLocker or FileVault),
+                while others, like VeraCrypt, are open-source solutions that
+                provide greater flexibility and control over encryption
+                settings.
+              </p>
+
+              <p>
+                The process of encrypting and decrypting data relies on secure
+                key management, typically initiated during system boot. There
+                are several ways to retrieve the key:
+              </p>
+
+              <ul class="alt">
+                <li>
+                  Manual key entry offers no automation but introduces usability
+                  concerns, such as forgotten passwords or weak key choices.
+                </li>
+
+                <li>
+                  External key storage (e.g. USB dongle) provides convenience
+                  but increases the risk of key loss or misplacement.
+                </li>
+
+                <li>
+                  Trusted Platform Module (TPM) offers a robust, hardware-backed
+                  approach to key storage. TPMs can securely generate and store
+                  keys, and often support hardware-accelerated encryption,
+                  easing the CPU workload and improving system performance. The
+                  combination of TPM with a user-defined PIN is widely
+                  considered a secure and efficient setup for disk encryption.
+                </li>
+              </ul>
+
+              <p>
+                An important aspect of TPM-based encryption is that the TPM chip
+                is unique to each physical device, which means encryption keys
+                are bound to the specific machine’s hardware (Roman et al.,
+                2012). While this enhances security, it also introduces a key
+                limitation: hard-disk migration is effectively impossible
+                without recovery keys or decrypting the disk first. If the drive
+                is moved to another machine, the encryption keys stored in the
+                original TPM are no longer accessible, rendering the data
+                unreadable.
+              </p>
+
+              <p>
+                Unless specialised hardware is in-play - such as Apple Enclave,
+                which is used by Apple’s FileVault encryption suite - systems
+                must hold decryption keys in memory while running. This presents
+                a vulnerability: tools designed to extract information from
+                memory could potentially access these keys. As noted by Tan et
+                al. (2020), this risk can be mitigated by disabling features
+                like hibernation and virtual memory. However, such measures can
+                degrade usability - especially disabling virtual memory
+                (paging), which is essential for running large applications or
+                multitasking on systems with limited RAM.
+              </p>
+
+              <p>
+                It is also worth questioning whether full-disk encryption is
+                necessary for every user. For many individuals, especially those
+                using personal devices, the likelihood of targeted data theft
+                through physical access is low. Additionally, cloud-based
+                ecosystems (such as those used in Chromebooks) offload data
+                storage to remote servers with built-in security measures,
+                reducing the need for local disk encryption - albeit with the
+                trade-off of requiring access to the internet.
+              </p>
+
+              <p>
+                As a personal note, I would suggest using cloud providers to
+                store critical information. Not only do clouds offer strong
+                security, but they also provide additional benefits such as
+                automatic backups, data recoverability, and high availability
+                across devices. For many users, this approach offers a practical
+                and reliable alternative to managing local disk encryption.
+              </p>
+
+              <p>
+                The ontology presented below defines the relationships between
+                mishap causes, their effects, and the severity of impact, ranked
+                into three levels: low, medium, and high.
+              </p>
+
+              <table>
+                <thead>
+                  <th>Risk</th>
+                  <th>Severity</th>
+                  <th>Impact</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Lost password for recovery mechanism</td>
+                    <td>High</td>
+                    <td>
+                      A lost key could render the content of the whole storage
+                      device useless.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      insufficient hardware support / no hardware acceleration
+                      for cryptography
+                    </td>
+                    <td>Low</td>
+                    <td>Usability of the device would be impacted heavily.</td>
+                  </tr>
+                  <tr>
+                    <td>False sense of security</td>
+                    <td>Medium</td>
+                    <td>
+                      Bad configuration and weak passwords creates vectors for
+                      brute force attacks
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Failing sectors on storage device</td>
+                    <td>Low</td>
+                    <td>
+                      Storage has a certain life-time, after which blocks can
+                      get corrupted. Unlikely, however this could cause the
+                      sector which holds the keys to be malformed
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div>
+                <h4>References:</h4>
+                <ul class="alt">
+                  <li>
+                    Kornblum, J. D. (2009) Implementing BitLocker Drive
+                    Encryption for forensic analysis. Digital investigation
+                    5(3-4): 75–84.
+                  </li>
+                  <li>
+                    Roman, P., Sovann, V., Triplin, K., Um, D., Violante, M.,
+                    Wees, A. (2012) Trusted Platform Module. Available from:
+                    https://researchedsolution.wordpress.com/2013/09/14/trusted-platform-module/
+                    [Accessed 2 July 2025]
+                  </li>
+                  <li>
+                    Tan, C., Zhang, L., & Bao, L., (2020) ‘A Deep Exploration of
+                    BitLocker Encryption and Security Analysis’. IEEE 20th
+                    International Conference on Communication Technology (ICCT)
+                    Nanning, China, 24 December. Unknown: IEEE. 1070-1074
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Contact -->
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
